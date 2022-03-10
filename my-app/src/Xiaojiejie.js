@@ -1,4 +1,6 @@
 import React,{Component, Fragment} from "react";
+import './style.css'
+import XiaojiejieItem from "./XiaojiejieItem";
 
 class Xiaojiejie extends Component{
     constructor(props){
@@ -13,19 +15,31 @@ class Xiaojiejie extends Component{
             //<div>
             <Fragment>
                 <div>
-                    <input value = {this.state.inputValue} onChange = {this.inputChange.bind(this)}/>
+                    <label htmlFor="js">增加服务：</label>
+                    <input id = 'js' className = "input" value = {this.state.inputValue} onChange = {this.inputChange.bind(this)}/>
                     <button onClick={this.addList.bind(this)}>增加服务</button>
                 </div>
                 <ul>
                     {
                         this.state.list.map((item,index) => {
                             return (
-                            <li 
-                            key = {item + index}
-                            onClick = {this.deleteIndex.bind(this,index)}
-                            >
-                                {item}
-                            </li>
+                            // <li 
+                            // key = {item + index}
+                            // onClick = {this.deleteItem.bind(this,index)}
+                            // dangerouslySetInnerHTML = {{__html : item}}
+                            // >
+                            //     {/* {item} */}
+                            // </li>
+                            
+                                <
+                                    XiaojiejieItem 
+                                    key = {item + index}
+                                    content = {item}
+                                    index = {index}
+                                    deleteItem = {this.deleteItem.bind(this)}
+
+                                />
+                            
                             )
                         })
                     }
@@ -49,7 +63,7 @@ class Xiaojiejie extends Component{
         })
     }
     //删除单数服务
-    deleteIndex(index) {
+    deleteItem(index) {
         let list = this.state.list;
         list.splice(index,1)
         //list.state.list.splice(index,1)(错误写法)
