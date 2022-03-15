@@ -1,4 +1,5 @@
 import React,{Component, Fragment} from "react";
+import axios from 'axios'
 import './style.css'
 import XiaojiejieItem from "./XiaojiejieItem";
 
@@ -13,14 +14,29 @@ class Xiaojiejie extends Component{
         }
     }
 
-    componentWillMount() {
-        console.log('componentWillMount----组件将要挂载到页面的时刻');
-    }
     componentDidMount() {
-        console.log('componentDidMount----组件挂载完成的时刻执行');
+        axios.post('https://web-api.juejin.im/v3/web/wbbr/bgeda/')
+            .then((res) => {console.log('axios获取数据成功' + JSON.stringify(res));})
+            .catch((error) => {console.log('axios获取数据失败' + error);})
     }
+    // componentWillMount() {
+    //     console.log('componentWillMount----组件将要挂载到页面的时刻');
+    // }
+    // componentDidMount() {
+    //     console.log('componentDidMount----组件挂载完成的时刻执行');
+    // }
+    // shouldComponentUpdate() {
+    //     console.log('1-shouldComponentUpdate');
+    //     return true;
+    // }
+    // componentWillUpdate() {
+    //     console.log('2-componentWillUpdate');
+    // }
+    // componentDidUpdate() {
+    //     console.log('4-componentDidUpdate');
+    // }
     render(){
-        console.log('render----组件加载中');
+        //console.log('3-render----组件加载中');
         return (
             //<div>
             <Fragment>
@@ -79,7 +95,7 @@ class Xiaojiejie extends Component{
         this.setState({
             list : [...this.state.list, this.state.inputValue]
         },() => {
-            console.log(this.ul.querySelectorAll('div').length);
+            //console.log(this.ul.querySelectorAll('div').length);
         })
 
     }

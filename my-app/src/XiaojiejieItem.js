@@ -6,7 +6,25 @@ class XiaojiejieItem extends Component {
         super(props)
         this.handleClick = this.handleClick.bind(this)
     }
+
+    //这个组件第一次存在于Dom中，函数是不会被执行的
+    //已经存在于Dom中，函数才会被执行
+    // componentWillReceiveProps() {
+    //     console.log('child - componentWillReceiveProps');
+    // }
+    // componentWillUnmount() {
+    //     console.log('chind - componentWillUnmount');
+    // }
+    shouldComponentUpdate(nextProps, nextState) {
+        if(nextProps.content !== this.props.content) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     render() { 
+        console.log('child - render');
         return (
             <div onClick = {this.handleClick}>
                 {this.props.avname}为你服务- {this.props.content}
