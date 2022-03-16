@@ -2,6 +2,7 @@ import React,{Component, Fragment} from "react";
 import axios from 'axios'
 import './style.css'
 import XiaojiejieItem from "./XiaojiejieItem";
+import Boss from "./Boss";
 
 class Xiaojiejie extends Component{
     //生命周期函数指在某一个时刻组件会自动调用执行的函数
@@ -72,11 +73,13 @@ class Xiaojiejie extends Component{
                                     deleteItem = {this.deleteItem.bind(this)}
 
                                 />
+                                
                             
                             )
                         })
                     }
                 </ul>
+                <Boss/>
             </Fragment>
             //</div>
         )
