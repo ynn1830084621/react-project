@@ -3,6 +3,7 @@ import axios from 'axios'
 import './style.css'
 import XiaojiejieItem from "./XiaojiejieItem";
 import Boss from "./Boss";
+import {CSSTransition, TransitionGroup} from "react-transition-group"
 
 class Xiaojiejie extends Component{
     //生命周期函数指在某一个时刻组件会自动调用执行的函数
@@ -53,31 +54,38 @@ class Xiaojiejie extends Component{
                     <button onClick={this.addList.bind(this)}>增加服务</button>
                 </div>
                 <ul ref = {(ul) => {this.ul = ul}}>
-                    {
-                        this.state.list.map((item,index) => {
-                            return (
-                            // <li 
-                            // key = {item + index}
-                            // onClick = {this.deleteItem.bind(this,index)}
-                            // dangerouslySetInnerHTML = {{__html : item}}
-                            // >
-                            //     {/* {item} */}
-                            // </li>
-                            
-                                <
-                                    XiaojiejieItem 
-                                    key = {item + index}
-                                    content = {item}
-                                   // avname = "某某"
-                                    index = {index}
-                                    deleteItem = {this.deleteItem.bind(this)}
+                    <TransitionGroup>
+                        {
+                            this.state.list.map((item,index) => {
+                                return (
+                                // <li 
+                                // key = {item + index}
+                                // onClick = {this.deleteItem.bind(this,index)}
+                                // dangerouslySetInnerHTML = {{__html : item}}
+                                // >
+                                //     {/* {item} */}
+                                // </li>
+                                <CSSTransition
+                                    timeout = {2000}
+                                    classNames = 'boss-text'
+                                    unmountOnExit
+                                    appear = {true}
+                                    key = {index + item}
+                                >
+                                    <   XiaojiejieItem 
+                                        key = {item + index}
+                                        content = {item}
+                                    // avname = "某某"
+                                        index = {index}
+                                        deleteItem = {this.deleteItem.bind(this)}
 
-                                />
+                                    />
+                                </CSSTransition>    
                                 
-                            
-                            )
-                        })
-                    }
+                                )
+                            })
+                        }
+                    </TransitionGroup>
                 </ul>
                 <Boss/>
             </Fragment>
