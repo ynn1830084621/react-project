@@ -2,8 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import Hoc from './Hoc';
-import Num from './Num'
+import Num from './Num';
+import Page from './Page';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<Num />);
+root.render(<Page />);
