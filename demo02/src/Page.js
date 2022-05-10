@@ -1,25 +1,34 @@
-import React, { PureComponent } from 'react';
-import { BrowserRouter as Router, Routes, Route, Link, useHistory } from 'react-router-dom';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Link, useNavigate } from 'react-router-dom';
 
-class Login extends PureComponent {
-    handleLogin = () => {
+const Login= () => {
+    const navigate = useNavigate();
+    const handleLogin = () => {
         //使用编程式导航实现路由跳转
-        this.props.history.push('/home')
+        console.log(navigate)
+        navigate('/home')
     }
-    render() { 
-        return ( 
-            <div>
-                <p>登录页面：</p>
-                <button onClick={this.handleLogin}>登录</button>
-            </div>
-        );
-    }
+    return ( 
+        <div>
+            <p>登录页面：</p>
+            <button onClick={() => handleLogin()}>登录</button>
+        </div>
+    );
 }
-const Home = () => (
-    <div>
-        <h2>我是后台首页</h2>
-    </div>
-)
+const Home = () => {
+    const navigate = useNavigate();
+    const handleBack = () => {
+        // props.history.go(-1);
+        navigate(-1)
+    }
+    return(
+        <div>
+            <h2>我是后台首页</h2>
+            <button onClick={() => handleBack()}>返回登录页面</button>
+        </div>
+    )
+    
+}
 
 const Page = () => (
     <Router>
